@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>听读背单词</title>
+    <meta
+      name="description"
+      content="一个可选择词库并自动朗读英文、字母拼写和中文释义的背单词网页。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-labelledby="app-title">
+        <div class="topbar">
+          <div>
+            <h1 id="app-title">听读背单词</h1>
+            <p>选择词库后开始，系统会按“单词、逐字母、单词、中文、暂停 2 秒”的顺序循环播放。</p>
+          </div>
+          <div class="status-pill" id="supportStatus">检测语音中</div>
+        </div>
+
+        <div class="control-strip" aria-label="学习控制">
+          <label class="field">
+            <span>词库</span>
+            <select id="dictionarySelect"></select>
+          </label>
+          <label class="field compact">
+            <span>起始序号</span>
+            <input id="startIndex" type="number" min="1" value="1" />
+          </label>
+          <label class="toggle">
+            <input id="shuffleToggle" type="checkbox" checked/>
+            <span>随机顺序</span>
+          </label>
+          <div class="button-row">
+            <button id="startBtn" class="primary" type="button">开始</button>
+            <button id="pauseBtn" type="button" disabled>暂停</button>
+            <button id="nextBtn" type="button" disabled>下一个</button>
+          </div>
+        </div>
+
+        <section class="word-panel" aria-live="polite">
+          <div class="meter">
+            <span id="progressText">尚未开始</span>
+            <span id="skipText">已略过 0 个</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar"></div>
+          </div>
+          <div class="word-card">
+            <p id="phaseText" class="phase">等待开始</p>
+            <h2 id="wordText">Select a list</h2>
+            <p id="lettersText" class="letters">A - B - C</p>
+            <p id="translationText" class="translation">选择词库并点击开始</p>
+          </div>
+        </section>
+
+        <section class="queue-panel" aria-labelledby="queue-title">
+          <div>
+            <h2 id="queue-title">当前词库预览</h2>
+            <p id="dictionaryMeta">0 个单词</p>
+          </div>
+          <ol id="wordPreview"></ol>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
